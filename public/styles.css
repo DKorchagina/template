@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.App-header{
+    background: #000;
+    color: #fff;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+.header__link{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: red;
+    font-style: normal;
+    font-stretch: 100%;
+    text-decoration-style: solid;
+    text-decoration: none;
+    font-size: 32px;
+}
+.wrap{
+    position: relative;
+    width: 300px;
+    height: 60px;
+}
+.search-input{
+    height: 60px;
+    width: 60px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    outline: none;
+    background: transparent;
+    transition: width .4s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+.search-input:focus{
+    width: 300px;
+    z-index: 1;
+    border: 2px solid #fff;
+}
+.mainContent{
+    justify-content: center;
+    margin: 0 5% 0 5%;
+   
+}
+h1{
+    height: 54px;
+    width: 100%;
+    margin-top: 54px;
+    text-align: center;
+}
+h2{
+    padding-bottom: 18px;
+    text-align: center;
+    border-bottom-style: solid;
+}
+.mainContent__list_track{
+    margin-top: 24px;
+    position: 0;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 60px 1fr 60px 1fr 60px 1fr;
+    grid-template-rows: repeat(5, 60px)
+}
+.img-track{
+    height: 60px;
+    width: 60px;
+}
+.main_executor_list_container{
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.img-ex-main{
+    max-width: 100%;
+    max-height: 100%;
+}
+.img-ex{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50% 50%
+}
+.executor_list_container{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2);
+    gap: 20px;
+}
+.executor_container_main{
+    position: relative;
+    border: solid gray;
+}
+.executor_container{
+    position: relative;
+    border-radius: 50% 50%;
+    border: solid gray;
+}
+.text-ex{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    color: red;
+    font-style: bold;
+}
