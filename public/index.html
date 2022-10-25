@@ -24,15 +24,16 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <header class="App-header">
-      <img src="emblem.png"/>
+    <header class="app-header">
+      <img style="margin-right: 242px;" src="emblem.png"/>
       <a href="/" class="header__link link">
           <span>Last.fm</span>
       </a>
       <div class="wrap">
-        <form>
-        <input type="search" placeholder="Search for music..." class="search-input">
-      </form>
+        <!--from action="ссылка"-->
+        <form action="/search.html" target="_blank">
+          <input type="search" placeholder="Search for music..." class="search-main">
+        </form>
       </div>
     </header>
     <main class="content">
@@ -40,28 +41,50 @@
           <h1>Music</h1>
           <h2>Popular tracks</h2>
           <div class="mainContent__list_track">
-            <img class="img-track" src="disk.jpg"/>
-            <div>tr1</div>
-            <img class="img-track"src="disk.jpg"/>
-            <div>tr2</div>
-            <img class="img-track"src="disk.jpg"/>
-            <div>tr3</div>
-            <img class="img-track"src="disk.jpg"/>
-            <div>tr4</div>
-            <img class="img-track" src="disk.jpg"/>
-            <div>tr5</div>
-            <img class="img-track" src="disk.jpg"/>
-            <div>tr6</div>
-            <img class="img-track" src="disk.jpg"/>
-            <div>tr7</div>
-            <img class="img-track" src="disk.jpg"/>
-            <div>tr8</div>
-            <img class="img-track" src="disk.jpg"/>
-            <div>tr9</div>
-            <img class="img-track" src="disk.jpg"/>
-            <div>tr10</div>
-            <img class="img-track" src="disk.jpg"/>
-            <div>tr11</div>
+            <div class="track">
+              <img class="img-track" src="disk.jpg"/>
+              <div>tr1</div>
+            </div>
+            <div class="track">
+              <img class="img-track" src="disk.jpg"/>
+              <div>tr2</div>
+            </div>
+            <div class="track">
+              <img class="img-track" src="disk.jpg"/>
+              <div>tr3</div>
+            </div>
+            <div class="track">
+              <img class="img-track" src="disk.jpg"/>
+              <div>tr4</div>
+            </div>
+            <div class="track">
+              <img class="img-track" src="disk.jpg"/>
+              <div>tr5</div>
+            </div>
+            <div class="track">
+              <img class="img-track" src="disk.jpg"/>
+              <div>tr6</div>
+            </div>
+            <div class="track">
+              <img class="img-track" src="disk.jpg"/>
+              <div>tr7</div>
+            </div>
+            <div class="track">
+              <img class="img-track" src="disk.jpg"/>
+              <div>tr8</div>
+            </div>
+            <div class="track">
+              <img class="img-track" src="disk.jpg"/>
+              <div>tr9</div>
+            </div>
+            <div class="track">
+              <img class="img-track" src="disk.jpg"/>
+              <div>tr10</div>
+            </div>
+            <div class="track">
+              <img class="img-track" src="disk.jpg"/>
+              <div>tr11</div>
+            </div>
 
           </div>
           <h2>Hot right now</h2>
@@ -111,6 +134,12 @@
 
           </div>
       </div>
-  </main>
+    </main>
+
+    <footer class="footer">
+      <div><p>Company</p></div>
+      <div><p>help</p></div>
+      <div class="footer__copyright">© 2021 ...</div>
+  </footer>
   </body>
 </html>

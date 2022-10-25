@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta
+        name="description"
+        content="Web site created using create-react-app"
+        />
+        <title>Search</title>
+        <link rel="stylesheet" href="styles.css"/>
+    </head>
+    <body>
+        <header class="app-header">
+            <img style="margin-right: 242px;" src="emblem.png"/>
+            <a href="/" class="header__link link">
+                <span>Last.fm</span>
+            </a>
+            <div class="wrap">
+              <!--from action="ссылка"-->
+              <form action="/search.html" target="_blank">
+                <input type="search" placeholder="Search for music..." class="search-main">
+              </form>
+            </div>
+          </header>
+
+        <main class="content">
+            <h1>
+                Search results
+            </h1>
+            <h2>No results</h2>
+        </main>
+
+        <footer class="footer">
+            <div><p>Company</p></div>
+            <div><p>help</p></div>
+            <div class="footer__copyright">© 2021 ...</div>
+        </footer>
+    </body>
+</html>
