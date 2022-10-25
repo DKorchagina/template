@@ -64,13 +64,13 @@
     margin: 0 5% 0 5%;
    
 }
-h1{
+.title_main{
     height: 54px;
     width: 100%;
     margin-top: 54px;
     text-align: center;
 }
-h2{
+.title_second{
     padding-bottom: 18px;
     text-align: center;
     border-bottom-style: solid;
