@@ -156,3 +156,36 @@
     height: 60px;
     width: 100%;
 }
+
+.title_three{
+    font-weight: normal;
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.executor_list_container_search{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    opacity: 1;
+    cursor: pointer;
+}
+.executor_container_search:hover{
+    opacity: 0.5;
+}
+.executor_container_search{
+    position: relative;
+}
+.track_search{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 1;
+    cursor: pointer;
+    margin-bottom: 5px;
+    border-bottom: 1px gray solid;
+}
+.track_search:hover{
+    opacity: 0.5;
+}
