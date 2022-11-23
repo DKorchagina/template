@@ -151,9 +151,11 @@
     color: red;
     font-style: bold;
 }
+
 .content{
     min-height: calc(100vh - 60px);
 }
+
 .footer {
     background: #000;
     color: #fff;
@@ -174,7 +176,6 @@
 .executor_list_container_search{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     opacity: 1;
     cursor: pointer;
     gap: 10px;

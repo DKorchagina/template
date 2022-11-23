@@ -7,9 +7,10 @@ const $artistList = document.querySelector('.executor_list_container');
  * Добавляет карточку трека в список треков
  * @param {*} image - ссылка на изображение трека
  * @param {*} text - наименование трека
+ * @param {*} url ссылка
  */
-function addTrackUI(image, text){
-  const template = `<div class="track"><img class="img-track" src="${image}"/><div>${text}</div></div>`;
+function addTrackUI(image, text, url){
+  const template = `<div class="track"><img class="img-track" src="${image}"/><a href=${url} target="_blank"><div>${text}</div></a></div>`;
   $trackList.insertAdjacentHTML('beforeend', template);
 }
 
@@ -17,11 +18,14 @@ function addTrackUI(image, text){
  * добавляет большую карточку исполнителя в список исполнителей
  * @param image ссылка на изображение карточки исполнителя
  * @param text имя исполнителя
+ * @param {*} url ссылка
  */
-function addTopArtistUI(image, text){
+function addTopArtistUI(image, text, url){
     const template = `<div class="executor_container_main">
       <img class="img-ex-main" src="${image}"/>
+      <a href=${url} target="_blank">
       <div class="text-ex">${text}</div>
+      </a>
     </div>`;
     $topArtistList.insertAdjacentHTML('beforeend', template);
 }
@@ -31,46 +35,30 @@ function addTopArtistUI(image, text){
  * @param image ссылка на изображение карточки исполнителя
  * @param text имя исполнителя
  */
-function addArtistUI(image, text){
+function addArtistUI(image, text, url){
     const template = `<div class="executor_container">
     <img class="img-ex" src="${image}"/>
+    <a href=${url} target="_blank">
     <div class="text-ex">${text}</div>
+    </a>
   </div>`;
     $artistList.insertAdjacentHTML('beforeend', template);
 }
 
 /**
- * 
- * @returns чарт лучших треков
+ * запрос данных через API Last.fm
+ * @param {*} url запрос API
+ * @param {*} message сообщение об ошибке
+ * @returns 
  */
-async function fetchTracks() {
+async function fetchAPI(url, message) {
     try{
-        const track= await fetch('http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=c83120fcb17ede8c5543ddca96539813&format=json');
-        if (track.status===200){
-        const data = await track.json();
-        return data;
-        }
-        else{
-            throw new Error('List of tracks was not received. ' + track.status);
-        }
-    }
-    catch(err){
-        console.error(err);
-    }
-}
-
-/**
- * @returns чарт лучших исполнителей
- */
-async function fetchArtist() {
-    try{
-
-        const artist= await fetch('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=c83120fcb17ede8c5543ddca96539813&format=json');
-        if (artist.status===200){
-        const data = await artist.json();
+        const info = await fetch(url);
+        if (info.status===200){
+        const data = await info.json();
         return data;}
         else{
-            throw new Error('List of artists was not received. ' + artist.status);
+            throw new Error(message + artist.status);
         }
     }
     catch(err){
@@ -82,19 +70,18 @@ async function fetchArtist() {
  * вывод контента
  */
 async function main() {
-    const tracks = await fetchTracks();
-    console.log(tracks);
-    for(let i=0;i<Math.min(15, tracks["tracks"]["track"].length); i++){
-        addTrackUI(tracks["tracks"]["track"][i]["image"][0]["#text"], tracks["tracks"]["track"][i]["name"]);
+    const tracks = await fetchAPI('http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=c83120fcb17ede8c5543ddca96539813&format=json', 'List of tracks was not received. ');
+    for(let i=0;i<tracks["tracks"]["track"].length; i++){
+        addTrackUI(tracks["tracks"]["track"][i]["image"][0]["#text"], tracks["tracks"]["track"][i]["name"], tracks["tracks"]["track"][i]["url"]);
     }
 
-    const artists = await fetchArtist();
-    for(let i=0;i<Math.min(14, artists["artists"]["artist"].length); i++){
+    const artists = await fetchAPI('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=c83120fcb17ede8c5543ddca96539813&format=json', 'List of artists was not received. ');
+    for(let i=0;i<artists["artists"]["artist"].length; i++){
         if (i==0 || i==1){
-            addTopArtistUI(artists["artists"]["artist"][i]["image"][0]["#text"], artists["artists"]["artist"][i]["name"]);
+            addTopArtistUI(artists["artists"]["artist"][i]["image"][0]["#text"], artists["artists"]["artist"][i]["name"], artists["artists"]["artist"][i]["url"]);
         }
         else{
-            addArtistUI(artists["artists"]["artist"][i]["image"][0]["#text"], artists["artists"]["artist"][i]["name"]);
+            addArtistUI(artists["artists"]["artist"][i]["image"][0]["#text"], artists["artists"]["artist"][i]["name"], artists["artists"]["artist"][i]["url"]);
         }
         
     }
