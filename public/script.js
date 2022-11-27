@@ -10,7 +10,7 @@ const $artistList = document.querySelector('.executor_list_container');
  * @param {*} url ссылка
  */
 function addTrackUI(image, text, url){
-  const template = `<div class="track"><img class="img-track" src="${image}"/><a href=${url} target="_blank"><div>${text}</div></a></div>`;
+  const template = `<div class="track"><img class="img-track" src="${image}"/><a href=${url} target="_blank" class="main__link link"><div>${text}</div></a></div>`;
   $trackList.insertAdjacentHTML('beforeend', template);
 }
 
@@ -22,9 +22,9 @@ function addTrackUI(image, text, url){
  */
 function addTopArtistUI(image, text, url){
     const template = `<div class="executor_container_main">
-      <img class="img-ex-main" src="${image}"/>
-      <a href=${url} target="_blank">
-      <div class="text-ex">${text}</div>
+      <div><img class="img-ex-main" src="${image}"/></div>
+      <a href=${url} target="_blank" class="main__link link">
+      <div>${text}</div>
       </a>
     </div>`;
     $topArtistList.insertAdjacentHTML('beforeend', template);
@@ -37,9 +37,9 @@ function addTopArtistUI(image, text, url){
  */
 function addArtistUI(image, text, url){
     const template = `<div class="executor_container">
-    <img class="img-ex" src="${image}"/>
-    <a href=${url} target="_blank">
-    <div class="text-ex">${text}</div>
+    <div><img class="img-ex" src="${image}"/></div>
+    <a href=${url} target="_blank" class="main__link link">
+    <div>${text}</div>
     </a>
   </div>`;
     $artistList.insertAdjacentHTML('beforeend', template);
@@ -70,18 +70,18 @@ async function fetchAPI(url, message) {
  * вывод контента
  */
 async function main() {
-    const tracks = await fetchAPI('http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=c83120fcb17ede8c5543ddca96539813&format=json', 'List of tracks was not received. ');
+    const tracks = await fetchAPI('http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=c83120fcb17ede8c5543ddca96539813&limit=15&format=json', 'List of tracks was not received. ');
     for(let i=0;i<tracks["tracks"]["track"].length; i++){
         addTrackUI(tracks["tracks"]["track"][i]["image"][0]["#text"], tracks["tracks"]["track"][i]["name"], tracks["tracks"]["track"][i]["url"]);
     }
 
-    const artists = await fetchAPI('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=c83120fcb17ede8c5543ddca96539813&format=json', 'List of artists was not received. ');
+    const artists = await fetchAPI('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=c83120fcb17ede8c5543ddca96539813&limit=15&format=json', 'List of artists was not received. ');
     for(let i=0;i<artists["artists"]["artist"].length; i++){
         if (i==0 || i==1){
-            addTopArtistUI(artists["artists"]["artist"][i]["image"][0]["#text"], artists["artists"]["artist"][i]["name"], artists["artists"]["artist"][i]["url"]);
+            addTopArtistUI(artists["artists"]["artist"][i]["image"][3]["#text"], artists["artists"]["artist"][i]["name"], artists["artists"]["artist"][i]["url"]);
         }
         else{
-            addArtistUI(artists["artists"]["artist"][i]["image"][0]["#text"], artists["artists"]["artist"][i]["name"], artists["artists"]["artist"][i]["url"]);
+            addArtistUI(artists["artists"]["artist"][i]["image"][2]["#text"], artists["artists"]["artist"][i]["name"], artists["artists"]["artist"][i]["url"]);
         }
         
     }

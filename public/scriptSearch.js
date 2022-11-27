@@ -20,7 +20,7 @@ function addTitle(text){
 function addArtist(image, name, url){
     const template = `<div class="executor_container_search">
     <img class="img-ex-main" src="${image}"/>
-    <a href=${url} target="_blank">
+    <a href=${url} target="_blank" class="main__link link">
     <div class="text-ex">${name}</div>
     </a>
   </div>`;
@@ -36,7 +36,7 @@ function addArtist(image, name, url){
 function addTrack(image, name, url){
     const template = `<div class="track_search">
     <img class="img-track" src="${image}"/>
-    <a href=${url} target="_blank">
+    <a href=${url} target="_blank" class="main__link link">
     <div>${name}</div>
     </a>
   </div>`;
@@ -79,22 +79,30 @@ function addNoResult(selector){
 async function main(){
     let params = document.location.search;
     let text = params.split("=")[1];
+    
+    const artistsSearch = await fetchAPI(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${text}&api_key=c83120fcb17ede8c5543ddca96539813&format=json`, 'List of artists was not received. ');
+    const trackSearch = await fetchAPI(`http://ws.audioscrobbler.com/2.0/?method=track.search&track=${text}&api_key=c83120fcb17ede8c5543ddca96539813&format=json`, 'List of tracks was not received. ');
     while(text.includes("+")){
         text = text.replace("+", ' ');
     }
     text = text.replace("%2B", "+");
     addTitle(text);
-    const artists = await fetchAPI('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=c83120fcb17ede8c5543ddca96539813&format=json', 'List of artists was not received. ');
-    for(let i=0;i<artists["artists"]["artist"].length; i++){
-        if (artists["artists"]["artist"][i]["name"].toLowerCase().includes(text.toLowerCase())){
-            addArtist(artists["artists"]["artist"][i]["image"][0]["#text"], artists["artists"]["artist"][i]["name"], artists["artists"]["artist"][i]["url"]);
+    for(let i=0;i<artistsSearch["results"]["artistmatches"]["artist"].length; i++){
+        let url = artistsSearch["results"]["artistmatches"]["artist"][i]["image"][1]["#text"];
+        if (url === ''){
+            url = "https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png";
         }
+        let name = artistsSearch["results"]["artistmatches"]["artist"][i]["name"];
+        console.log(name);
+        if (name.length>=30){
+            name = name.slice(0, 30) + '...';
+        }
+        console.log(name);
+        console.log(name.length);
+       addArtist(url, name, artistsSearch["results"]["artistmatches"]["artist"][i]["url"]);
     }
-    const tracks = await fetchAPI('http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=c83120fcb17ede8c5543ddca96539813&format=json', 'List of tracks was not received. ');
-    for(let i=0;i<tracks["tracks"]["track"].length; i++){
-        if (tracks["tracks"]["track"][i]["name"].toLowerCase().includes(text.toLowerCase())){
-            addTrack(tracks["tracks"]["track"][i]["image"][0]["#text"], tracks["tracks"]["track"][i]["name"], tracks["tracks"]["track"][i]["url"]);
-        }
+    for(let i=0;i<trackSearch["results"]["trackmatches"]["track"].length; i++){
+        addTrack(trackSearch["results"]["trackmatches"]["track"][i]["image"][0]["#text"], trackSearch["results"]["trackmatches"]["track"][i]["name"],  trackSearch["results"]["trackmatches"]["track"][i]["url"]);
     }
     if (document.querySelectorAll('.executor_container_search')["length"]==0){
         addNoResult($artistSearch);
