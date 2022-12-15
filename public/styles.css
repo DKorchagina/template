@@ -87,6 +87,7 @@
     align-items: center;
     opacity: 1;
     cursor: pointer;
+    gap: 10px;
 }
 .track:hover{
     opacity: 0.5;
@@ -102,34 +103,47 @@
     gap: 20px;
 }
 .img-ex-main{
-    max-width: 100%;
-    max-height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .img-ex{
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 50% 50%
+    
+    border-radius: 50% 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .executor_list_container{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 20px;
+    margin: 10px;
 }
 .executor_container_main{
     position: relative;
-    border: solid gray;
     opacity: 1;
     cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 18fr 1fr;
+    justify-items: center;
+    gap: 15px;
 }
 .executor_container_main:hover{
     opacity: 0.5;
 }
 .executor_container{
     position: relative;
-    border-radius: 50% 50%;
-    border: solid gray;
     opacity: 1;
     cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10fr 1fr;
+    justify-items: center;
+    gap: 15px;
 }
 .executor_container:hover{
     opacity: 0.5;
@@ -139,13 +153,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 32px;
-    color: red;
-    font-style: bold;
+    text-align: center;
 }
+
 .content{
     min-height: calc(100vh - 60px);
 }
+
 .footer {
     background: #000;
     color: #fff;
@@ -166,14 +180,15 @@
 .executor_list_container_search{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     opacity: 1;
     cursor: pointer;
+    gap: 10px;
 }
 .executor_container_search:hover{
     opacity: 0.5;
 }
 .executor_container_search{
+    min-height: 64px;
     position: relative;
 }
 .track_search{
@@ -188,4 +203,11 @@
 }
 .track_search:hover{
     opacity: 0.5;
+}
+.main__link{
+    color: #000;
+    text-decoration: none;
+}
+.main__link:visited{
+    color: blueviolet;
 }

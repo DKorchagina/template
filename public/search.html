@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
         <meta charset="utf-8" />
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <meta
@@ -11,6 +10,7 @@
         />
         <title>Search</title>
         <link rel="stylesheet" href="styles.css"/>
+        <script src="scriptSearch.js" defer></script>
     </head>
     <body>
         <header class="app-header">
@@ -19,75 +19,22 @@
                 <span>Last.fm</span>
             </a>
             <div class="wrap">
-              <form action="/search.html" target="_blank">
-                <input type="search" name="text" placeholder="Search for music..." class="search-main">
+              <form method="get" text="formx2" action="/search.html" target="_blank">
+                <input type="search" placeholder="Search for music..." class="search-main" name="id">
               </form>
             </div>
           </header>
 
         <main class="content">
           <div class="mainContent">
-            <h1 class="title_main"> Search results for “ex”</h1>
             <h3 class="title_three"> Artists</h3>
             <div class="mainContent__list_executor">
               <div class="executor_list_container_search">
-                <div class="executor_container_search">
-                  <img class="img-ex-main" src="micro.jpg"/>
-                  <div class="text-ex">ex1</div>
-                </div>
-                <div class="executor_container_search">
-                  <img class="img-ex-main" src="micro.jpg"/>
-                  <div class="text-ex">ex2</div>
-                </div>
-                <div class="executor_container_search">
-                  <img class="img-ex" src="micro.jpg"/>
-                  <div class="text-ex">ex3</div>
-                </div>
-                <div class="executor_container_search">
-                  <img class="img-ex" src="micro.jpg"/>
-                  <div class="text-ex">ex4</div>
-                </div>
-                <div class="executor_container_search">
-                  <img class="img-ex" src="micro.jpg"/>
-                  <div class="text-ex">ex5</div>
-                </div>
-                <div class="executor_container_search">
-                  <img class="img-ex" src="micro.jpg"/>
-                  <div class="text-ex">ex6</div>
-                </div>
-                <div class="executor_container_search">
-                  <img class="img-ex" src="micro.jpg"/>
-                  <div class="text-ex">ex7</div>
-                </div>
-                <div class="executor_container_search">
-                  <img class="img-ex" src="micro.jpg"/>
-                  <div class="text-ex">ex8</div>
-                </div>
-                <div class="executor_container_search">
-                  <img class="img-ex" src="micro.jpg"/>
-                  <div class="text-ex">ex9</div>
-                </div>
               </div>
             </div>
 
             <h3 class="title_three">Tracks</h3>
             <div class="mainContent__list_track_seacrh">
-              <div class="track_search">
-                <img class="img-track" src="disk.jpg"/>
-                <div>tr1_ex</div>
-              </div>
-              <div class="track_search">
-                <img class="img-track" src="disk.jpg"/>
-                <div>tr2_ex</div>
-              </div>
-              <div class="track_search">
-                <img class="img-track" src="disk.jpg"/>
-                <div>tr3_ex</div>
-              </div>
-              <div class="track_search">
-                <img class="img-track" src="disk.jpg"/>
-                <div>tr4_ex</div>
-              </div>
           </div>
         </main>
 

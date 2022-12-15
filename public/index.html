@@ -20,9 +20,10 @@
     -->
     <title>React App</title>
     <link rel="stylesheet" href="styles.css"/>
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!--<noscript>You need to enable JavaScript to run this app.</noscript>-->
     <div id="root"></div>
     <header class="app-header">
       <img style="margin-right: 242px;" src="emblem.png"/>
@@ -30,108 +31,25 @@
           <span>Last.fm</span>
       </a>
       <div class="wrap">
-        <form action="/search.html" target="_blank">
-          <input type="search" placeholder="Search for music..." class="search-main">
+        <form method="get" text="formx2" action="/search.html" target="_blank">
+          <input type="search" placeholder="Search for music..." class="search-main" name="id">
         </form>
       </div>
     </header>
     <main class="content">
       <div class="mainContent">
           <h1 class="title_main">Music</h1>
-          <h2 class="title_second">Popular tracks</h2>
-          <div class="mainContent__list_track">
-            <div class="track">
-              <img class="img-track" src="disk.jpg"/>
-              <div>tr1_ex</div>
-            </div>
-            <div class="track">
-              <img class="img-track" src="disk.jpg"/>
-              <div>tr2_ex</div>
-            </div>
-            <div class="track">
-              <img class="img-track" src="disk.jpg"/>
-              <div>tr3_ex</div>
-            </div>
-            <div class="track">
-              <img class="img-track" src="disk.jpg"/>
-              <div>tr4_ex</div>
-            </div>
-            <div class="track">
-              <img class="img-track" src="disk.jpg"/>
-              <div>tr5</div>
-            </div>
-            <div class="track">
-              <img class="img-track" src="disk.jpg"/>
-              <div>tr6</div>
-            </div>
-            <div class="track">
-              <img class="img-track" src="disk.jpg"/>
-              <div>tr7</div>
-            </div>
-            <div class="track">
-              <img class="img-track" src="disk.jpg"/>
-              <div>tr8</div>
-            </div>
-            <div class="track">
-              <img class="img-track" src="disk.jpg"/>
-              <div>tr9</div>
-            </div>
-            <div class="track">
-              <img class="img-track" src="disk.jpg"/>
-              <div>tr10</div>
-            </div>
-            <div class="track">
-              <img class="img-track" src="disk.jpg"/>
-              <div>tr11</div>
-            </div>
-
-          </div>
           <h2 class="title_second">Hot right now</h2>
           <div class="mainContent__list_executor">
             <div class="main_executor_list_container">
-              <div class="executor_container_main">
-                <img class="img-ex-main" src="micro.jpg"/>
-                <div class="text-ex">ex1</div>
-              </div>
-              <div class="executor_container_main">
-                <img class="img-ex-main" src="micro.jpg"/>
-                <div class="text-ex">ex2</div>
-              </div>
             </div>
             <div class="executor_list_container">
-              <div class="executor_container">
-                <img class="img-ex" src="micro.jpg"/>
-                <div class="text-ex">ex3</div>
-              </div>
-              <div class="executor_container">
-                <img class="img-ex" src="micro.jpg"/>
-                <div class="text-ex">ex4</div>
-              </div>
-              <div class="executor_container">
-                <img class="img-ex" src="micro.jpg"/>
-                <div class="text-ex">ex5</div>
-              </div>
-              <div class="executor_container">
-                <img class="img-ex" src="micro.jpg"/>
-                <div class="text-ex">ex6</div>
-              </div>
-              <div class="executor_container">
-                <img class="img-ex" src="micro.jpg"/>
-                <div class="text-ex">ex7</div>
-              </div>
-              <div class="executor_container">
-                <img class="img-ex" src="micro.jpg"/>
-                <div class="text-ex">ex8</div>
-              </div>
-              <div class="executor_container">
-                <img class="img-ex" src="micro.jpg"/>
-                <div class="text-ex">ex9</div>
-              </div>
             </div>
-            
-          
-
           </div>
+          <h2 class="title_second">Popular tracks</h2>
+          <div class="mainContent__list_track">
+          </div>
+          
       </div>
     </main>
 
