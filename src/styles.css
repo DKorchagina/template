@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+.logo{
+    margin-right: 242px;
+}
 .app-header{
     background: #000;
     color: #fff;
@@ -80,7 +83,7 @@
     display: grid;
     gap: 20px;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: repeat(5, 60px)
+    grid-template-rows: repeat(5, 1fr);
 }
 .track{
     display: flex;
@@ -93,8 +96,7 @@
     opacity: 0.5;
 }
 .img-track{
-    height: 60px;
-    width: 60px;
+    height: 100%;
 }
 .main_executor_list_container{
     margin-top: 24px;
@@ -115,6 +117,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
 }
 .executor_list_container{
     display: grid;
@@ -141,7 +144,7 @@
     cursor: pointer;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 10fr 1fr;
+    grid-template-rows: 12fr 1fr;
     justify-items: center;
     gap: 15px;
 }
