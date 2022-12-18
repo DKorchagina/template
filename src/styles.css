@@ -144,7 +144,7 @@
     cursor: pointer;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 10fr 1fr;
+    grid-template-rows: 12fr 1fr;
     justify-items: center;
     gap: 15px;
 }

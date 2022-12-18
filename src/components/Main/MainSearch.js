@@ -6,90 +6,61 @@ export const MainSearch = () => {
     let params = document.location.search;
     let text = params.split("=")[1];
     
-    const [tracks, setTracks] = useState([]);
-    const [isLoader, setIsLoader] = useState(false);
-    const [error, setError] = useState(null);
+    const [templateTrack, setTemplateTrack] = useState(<div>Loading...</div>);
     useEffect(()=>{
-        fetch(`http://ws.audioscrobbler.com/2.0/?method=track.search&track=${text}&api_key=c83120fcb17ede8c5543ddca96539813&format=json&limit=15`).then(res => res.json()).then((result) => {
-            setIsLoader(true);
-            setTracks(result.results.trackmatches.track);
+        fetch(`http://ws.audioscrobbler.com/2.0/?method=track.search&track=${document.location.search.split("=")[1]}&api_key=c83120fcb17ede8c5543ddca96539813&format=json&limit=15`).then(res => res.json()).then((result) => {
+            if (result.results.trackmatches.track.length===0){
+                setTemplateTrack(<div> No results </div>);
+            }
+            else{
+                setTemplateTrack(<div className="mainContent__list_track_seacrh">
+                {result.results.trackmatches.track.map((item)=>(
+                    <div className="track_search" key={result.results.trackmatches.track.indexOf(item)}>
+                    <img className="img-track" src={item.image[1]["#text"]} alt=""/>
+                    <a href={item.url} target="_blank" rel="noreferrer" className="main__link link">
+                    <div>{item.name}</div>
+                    </a>
+                  </div>
+                ))}
+            </div>);
+            }
         }, (error)=>{
-            setIsLoader(false);
-            setError(error);
+            setTemplateTrack(<div>Error: {error.message}</div>)
         })
     }, []);
-    let template;
-    if (error){
-        template = <div>Error: {error.message}</div>;
-    }
-    else if (!isLoader){
-        template =  <div>Loading...</div>;
-    }
-    else if (tracks.length==0){
-        template = <div> No results </div>;
-    }
-    else {
-        template = 
-        <div className="mainContent__list_track_seacrh">
-            {tracks.map((item)=>(
-                <div className="track_search" key={tracks.indexOf(item)}>
-                <img className="img-track" src={item.image[1]["#text"]} alt=""/>
-                <a href={item.url} target="_blank" rel="noreferrer" className="main__link link">
-                <div>{item.name}</div>
-                </a>
-              </div>
-            ))}
-        </div>
-        ;
-    }
-
-    const [artists, setArtists] = useState([]);
-    const [isLoaderArtist, setIsLoaderArtist] = useState(false);
-    const [errorArtist, setErrorArtist] = useState(null);
+   
+    const [templateArtist, setTemplateArtist] = useState(<div>Loading...</div>);
     useEffect(()=>{
-        fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${text}&api_key=c83120fcb17ede8c5543ddca96539813&format=json&limit=28`).then(res => res.json()).then((result) => {
-            setIsLoaderArtist(true);
-            setArtists(result.results.artistmatches.artist);
+        fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${document.location.search.split("=")[1]}&api_key=c83120fcb17ede8c5543ddca96539813&format=json&limit=28`).then(res => res.json()).then((result) => {
+            result.results.artistmatches.artist.map((item)=>{
+                if (item.image[1]["#text"] === ''){
+                    item.image[1]["#text"] = "https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png";
+                }
+                let name = item.name;
+                if (name.length>=30){
+                    name = name.slice(0, 30) + '...';
+                }
+                item.name = name;
+            });
+            if (result.results.artistmatches.artist.length===0){
+                setTemplateArtist(<div> No results </div>);
+            }
+            else{
+                setTemplateArtist(<div className="executor_list_container_search">
+                {result.results.artistmatches.artist.map((item)=>(
+                    <div className="executor_container_search" key={result.results.artistmatches.artist.indexOf(item)}>
+                    <img className="img-ex-main" src={item.image[1]["#text"]} alt=""/>
+                    <a href={item.url} target="_blank" rel="noreferrer" className="main__link link">
+                <div className="text-ex">{item.name}</div>
+                    </a>
+                  </div>
+                ))}
+            </div>);
+            }
         }, (error)=>{
-            setIsLoaderArtist(false);
-            setErrorArtist(error);
+            setTemplateArtist(<div>Error: {error.message}</div>)
         })
     }, []);
-
-    artists.map((item)=>{
-        if (item.image[1]["#text"] == ''){
-            item.image[1]["#text"] = "https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png";
-        }
-        let name = item.name;
-        if (name.length>=30){
-            name = name.slice(0, 30) + '...';
-        }
-        item.name = name;
-    });
-
-    let templateArtist;
-    if (errorArtist){
-        templateArtist = <div>Error: {errorArtist.message}</div>;
-    }
-    else if (!isLoaderArtist){
-        templateArtist =  <div>Loading...</div>;
-    }
-    else if (artists.length==0){
-        templateArtist = <div> No results</div>;
-    }
-    else{
-        templateArtist = <div className="executor_list_container_search">
-            {artists.map((item)=>(
-                <div className="executor_container_search" key={artists.indexOf(item)}>
-                <img className="img-ex-main" src={item.image[1]["#text"]} alt=""/>
-                <a href={item.url} target="_blank" rel="noreferrer" className="main__link link">
-            <div className="text-ex">{item.name}</div>
-                </a>
-              </div>
-            ))}
-        </div>
-        ;
-    }
 
     while(text.includes("+")){
         text = text.replace("+", ' ');
@@ -107,7 +78,7 @@ export const MainSearch = () => {
                 </div>
 
                 <h3 className="title_three">Tracks</h3>
-                {template}
+                {templateTrack}
             </div>
         </main>
     );
